@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Gd\Driver;
-
+use Illuminate\Support\Facades\RateLimiter;
 
 class PhotosController extends Controller
 {
@@ -17,6 +17,11 @@ class PhotosController extends Controller
 
         if($validator->fails())
             return response()->json(['success'=>false,'message'=>$validator->errors()->first() ], 400);
+
+        $ip = $req->ip();
+        $executed = RateLimiter::attempt($ip,$perTwoMinutes = 4,function() {});
+        if (!$executed)
+            return response()->json(['success'=>false, 'message'=>'Demasiadas peticiones. Espere 1 minuto.' ],500);
 
         try {
             $image = $req->file('image');
