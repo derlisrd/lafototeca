@@ -41,7 +41,7 @@ class PhotosController extends Controller
 
             return response()->json([
                 'success'=>true,
-                'results'=>'a'
+                'results'=>'Foto subida'
             ]);
         } catch (\Throwable $th) {
             //throw $th;
