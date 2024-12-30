@@ -20,6 +20,7 @@ return new class extends Migration
             $table->dateTime('fecha');
             $table->text('password')->nullable();
             $table->boolean('privado')->default(0);
+            $table->boolean('premium')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

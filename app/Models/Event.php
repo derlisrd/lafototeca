@@ -13,6 +13,11 @@ class Event extends Model
         'descripcion',
         'detalles',
         'fecha',
-        'user_id'
+        'user_id',
+        'premium'
     ];
+
+    public function FotosPorEvento(){
+        return $this->hasMany(Photo::class);
+    }
 }
