@@ -6,3 +6,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/upload-photo',[PhotosController::class,'store']);
+
+
